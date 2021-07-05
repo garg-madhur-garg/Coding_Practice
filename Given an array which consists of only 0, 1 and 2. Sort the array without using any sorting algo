@@ -1,0 +1,21 @@
+void sort012(int a[], int n)
+    {
+        // coode here 
+        int f = 0;
+        int m = 0;
+        int l = n - 1;
+        while(m <= l){
+            if(a[m] == 0){
+                swap(a[f], a[m]);
+                f++;
+                m++;
+            }
+            else if(a[m] == 1){
+                m++;
+            }
+            else{
+                swap(a[m], a[l]);
+                l--;
+            }
+        }
+    }
