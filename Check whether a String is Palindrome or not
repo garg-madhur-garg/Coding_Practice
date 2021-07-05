@@ -1,0 +1,16 @@
+int isPlaindrome(string S)
+	{
+	    // Your code goes here
+	    int len = S.length();
+	    string str = S;
+	    for(int i = 0; i < len/2; i++){
+	        swap(S[i], S[len - i - 1]);
+	    }
+	    
+	    if(S == str){
+	        return 1;
+	    }
+	    else{
+	        return 0;
+	    }
+	}
