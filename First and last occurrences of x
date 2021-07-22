@@ -1,0 +1,29 @@
+vector<int> find(int arr[], int n , int x )
+{
+    vector<int>v;
+    int i;
+    int j;
+    
+    for(i = 0; i < n; i++){
+        if(arr[i] == x){
+            v.push_back(i);
+            j = i;
+            
+            while(arr[i] == arr[j]){
+                j++;
+            }
+            
+            v.push_back(j - 1);
+            i = j - 1;
+        }
+    }
+    
+    if(v.empty()){
+        v.push_back(-1);
+        v.push_back(-1);
+        return v;
+    }
+    else{
+        return v;
+    }
+}
