@@ -1,0 +1,14 @@
+int find_median(vector<int> v)
+		{
+		    int n = v.size();
+		    sort(v.begin(), v.end());
+		    
+		    if(n%2 != 0){
+		        return v[n/2];
+		    }
+		    else{
+		        int ind = (n / 2) - 1;
+		        int avg = (v[ind] + v[ind + 1])/2;
+		        return avg;
+		    }
+		}
