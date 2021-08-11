@@ -1,0 +1,18 @@
+class Solution{
+  public:
+    string convertToRoman(int n) {
+        string t[] = {"", "M", "MM", "MMM"};
+        string h[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+        string te[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        string o[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        
+        string thousand = t[n/1000];
+        string hundred = h[(n%1000)/100];
+        string tens = te[(n%100)/10];
+        string ones = o[(n%10)];
+        
+        return thousand + hundred + tens + ones;
+        
+        
+    }
+};
