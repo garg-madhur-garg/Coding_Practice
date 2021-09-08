@@ -1,14 +1,49 @@
+//User function Template for C++
+
 string reverseWord(string str){
     
-  //Your code here
-  int i = 0;
-  int j = str.length() - 1;
-  while(i <= j){
-      int temp = str[j];
-      str[j] = str[i];
-      str[i] = temp;
-      i++, j--;
-  }
+  //Reverse in O(n/2)
   
-  return str;
+//   int n = str.length();
+//   for(int i = 0; i < n/2; i++){
+//       swap(str[i], str[n - i - 1]);
+//   }
+  
+//   return str;
+  
+  //Reverse in O(n/2) and using two pointers
+  
+//   int n = str.length();
+//   int start = 0;
+//   int end = n - 1;
+  
+//   while(start <= end){
+//       swap(str[start], str[end]);
+//       start++;
+//       end--;
+//   }
+  
+//   return str;
+  
+  // Reverse using recursion
+//   int n = str.length();
+//   int start = 0;
+//   int end = n - 1;
+  
+//   void reverse(string str, int start, int end){
+//     if(start > end){
+//       return;
+//     }
+//     else{
+//       swap(str[start], str[end]);
+//       str = reverse(str, start - 1, end - 1);
+//     }
+//   }
+  
+//   return str;
+
+    //Reverse using Default Function
+    
+    reverse(str.begin(), str.end());
+    return str;
 }
