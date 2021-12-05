@@ -1,0 +1,54 @@
+class Solution{
+public:
+	int search(string pat, string txt) {
+	    // code here
+	    int k = pat.length();
+	    int n = txt.length();
+	    
+	    
+	    unordered_map<char, int>m;
+	   for(int i = 0; i < k; i++){
+	       m[pat[i]]++;
+	   }
+	   int ans = 0;
+	   int cnt = m.size();
+	   
+	   int i = 0;
+	   int j = 0;
+	    
+	    while(j < n){
+	        //Calculation
+	        if(m.find(txt[j]) != m.end()){
+	            m[txt[j]]--;
+	            if(m[txt[j]] == 0){
+	                cnt--;
+	            }
+	        }
+	        
+	        if(j - i + 1 < k){
+	            j++;
+	        }
+	        else if(j - i + 1 == k){
+	            //Ans of Calculation
+	            
+	            if(cnt == 0){
+	                ans++;
+	            }
+	            //sliding
+	            if(m.find(txt[i]) != m.end()){
+	                m[txt[i]]++;
+	                if(m[txt[i]] == 1)
+	                cnt++;
+	            }
+	            i++;
+	            j++;
+	        }
+	        
+	        
+	    }
+	    
+	    return ans;
+	    
+	}
+
+};
