@@ -1,0 +1,65 @@
+struct Node
+{
+    int data;
+    Node* left, * right;
+}; */
+
+class Solution {
+public:
+
+    vector<int>ans;
+
+    void leftNode(Node* root){
+        if(root != NULL){
+            if(root->left != NULL){
+                ans.push_back(root->data);
+                leftNode(root->left);
+            }
+            else if(root->right != NULL){
+                ans.push_back(root->data);
+                leftNode(root->right);
+            }
+        }    
+    }
+    
+    void leafNode(Node* root){
+        if(root != NULL){
+            leafNode(root->left);
+            
+            if(root->left == NULL && root->right == NULL){
+                ans.push_back(root->data);
+            }
+            
+            leafNode(root->right);
+        }
+    }
+    
+    void rightNode(Node* root){
+        if(root != NULL){
+            if(root->right != NULL){
+                rightNode(root->right);
+                ans.push_back(root->data);
+            }
+            else if(root->left != NULL){
+                rightNode(root->left);
+                ans.push_back(root->data);
+            }
+        }
+    }
+    
+    vector <int> boundary(Node *root)
+    {
+        //Your code here
+        if(root != NULL){
+            ans.push_back(root->data);
+            leftNode(root->left);
+            
+            leafNode(root->left);  //If only one node is their then wrong answer come(initial bhi print ho jayega ans is line se bhi), hence left and right ke leaf nodes alag alag nikale hai, 
+            leafNode(root->right);
+            
+            rightNode(root->right);
+        }
+        
+        return ans;
+    }
+};
