@@ -1,0 +1,16 @@
+// Function to find the minimum element in the given BST.
+int minValue(Node* root) {
+    // Code here
+    if(root != NULL){
+        if(root->left != NULL){
+            int mini = minValue(root->left);
+        }
+        else{
+            return root->data;
+        }
+    }
+    else{
+        return -1;
+    }
+    
+}
