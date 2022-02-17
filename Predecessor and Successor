@@ -1,0 +1,51 @@
+/* BST Node
+struct Node
+{
+	int key;
+	struct Node *left, *right;
+};
+*/
+
+// This function finds predecessor and successor of key in BST.
+// It sets pre and suc as predecessor and successor respectively
+void precessor(Node* root, Node*& pre, int key){
+        Node* pred = NULL;
+        
+        while(root != NULL){
+            if(key <= root->key){
+                root = root->left;
+            }
+            else{
+                pred = root;
+                root = root->right;
+            }
+        }
+        
+        pre = pred;
+}
+
+void successor(Node* root, Node*& suc, int key){
+        Node* succ = NULL;
+        
+        while(root != NULL){
+            if(key >= root->key){
+                root = root->right;
+            }
+            else{
+                succ = root;
+                root = root->left;
+            }
+        }
+        
+        suc = succ;
+}
+
+void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
+{
+
+// Your code goes here
+    precessor(root, pre, key);
+    successor(root, suc, key);
+
+
+}
