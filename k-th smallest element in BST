@@ -1,0 +1,23 @@
+class Solution {
+  public:
+  int ans = -1;
+  int cnt = 0;
+    
+    void inorder(Node* root, int k){
+        if(root != NULL){
+            inorder(root->left, k);
+            cnt++;
+            if(cnt == k){
+                ans = root->data;
+                return;
+            }
+            inorder(root->right, k);
+        }
+    }
+    // Return the Kth smallest element in the given BST
+    int KthSmallestElement(Node *root, int K) {
+        // add code here.
+        inorder(root, K);
+        return ans;
+    }
+};
