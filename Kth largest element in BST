@@ -1,0 +1,25 @@
+// return the Kth largest element in the given BST rooted at 'root'
+class Solution
+{
+    public:
+    int ans = 0;
+    int cnt = 0;
+    
+    void reverseInorder(Node* root, int k){
+        if(root != NULL){
+            reverseInorder(root->right, k);
+            cnt++;
+            if(cnt == k){
+                ans = root->data;
+            }
+            reverseInorder(root->left, k);
+        }
+    }
+    
+    int kthLargest(Node *root, int K)
+    {
+        //Your code here
+        reverseInorder(root, K);
+        return ans;
+    }
+};
