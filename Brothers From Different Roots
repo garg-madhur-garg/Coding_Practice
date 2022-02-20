@@ -1,0 +1,52 @@
+/*Structure of the Node of the BST is as
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution
+{
+public:
+    int cnt = 0;
+    
+    bool search(Node* root2, int n){
+        if(root2 != NULL){
+            if(root2->data == n){
+                return true;
+            }
+            else if(root2->data < n){
+                search(root2->right, n);
+            }
+            else{
+                search(root2->left, n);
+            }
+        }
+        else{
+            return false;
+        }
+    }
+    
+    void inorder(Node* root1, Node* root2, int x){
+        if(root1 != NULL){
+            inorder(root1->left, root2, x);
+            if(search(root2, (x - root1->data)) == true){
+                cnt++;
+            }
+            inorder(root1->right, root2, x);
+        }    
+    }
+    
+    int countPairs(Node* root1, Node* root2, int x)
+    {
+        inorder(root1, root2, x);
+        return cnt;
+    }
+};
