@@ -1,0 +1,19 @@
+//Function that constructs BST from its preorder traversal.
+Node* build(int pre[], int size, int& i, int bound){
+    if(i == size || pre[i] > bound ){
+        return NULL;
+    }
+    
+    Node* root = newNode(pre[i++]);
+    root->left = build(pre, size, i, root->data);
+    root->right = build(pre, size, i, bound);
+    
+    return root;
+}
+
+Node* post_order(int pre[], int size)
+{
+    //code here
+    int i = 0;
+    return build(pre, size, i, INT_MAX);
+}
