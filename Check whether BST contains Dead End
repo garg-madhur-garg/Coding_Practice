@@ -1,0 +1,46 @@
+/*The Node structure is
+struct Node {
+int data;
+Node * right, * left;
+};*/
+
+/*You are required to complete below method */
+
+bool check(Node* root, int l, int r){
+    
+    //------------------------------------PREORDER------------------------------------
+    
+    // if(root == NULL){
+    //     return false;
+    // }
+    // else if(l == r){
+    //     return true;
+    // }
+    // else{
+    //     return check(root->left, l, root->data - 1) || check(root->right, root->data + 1, r);
+    // }
+    
+    // --------------------INORDER-------------------------------------------
+    
+    if(root == NULL){
+        return false;
+    }
+    else{
+        bool left = check(root->left, l, root->data - 1);
+        if(l == r){
+            return true;
+        }
+        bool right = check(root->right, root->data + 1, r);
+        return left || right;
+    }
+    
+}
+
+bool isDeadEnd(Node *root)
+{
+    //Your code here
+    int l = 1;
+    int r = INT_MAX;
+    
+    return check(root, l, r);
+}
