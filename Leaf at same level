@@ -1,0 +1,31 @@
+class Solution{
+  public:
+    /*You are required to complete this method*/
+    
+    bool solve(Node* root, int &level_of_last, int level){
+        if(root == NULL){
+            return true;
+        }
+        
+        if(root->left == NULL && root->right == NULL){
+            if(level_of_last == -1){
+                level_of_last = level;
+            }
+            return (level_of_last == level);
+        }
+        else{
+            return (solve(root->left, level_of_last, level + 1) && solve(root->right, level_of_last, level + 1));
+        }
+        
+    }
+    
+    bool check(Node *root)
+    {
+        //Your code here
+        int level_of_last = -1;
+        int level = 0;
+        
+        bool ans = solve(root, level_of_last, level);
+        return ans;
+    }
+};
