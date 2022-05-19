@@ -1,0 +1,45 @@
+class Solution{  
+public:
+
+struct sort{
+    bool operator()(pair<int, int>& a, pair<int, int>& b)
+    {
+        if(a.first<b.first)
+        return true ; 
+        else if(a.first == b.first)
+        {
+            if(a.second > b.second)
+            return true ;
+            else
+            return false;  
+        }
+        else
+        return false;
+    }
+};
+    
+    vector<int> printKClosest(vector<int> arr, int n, int k, int x) {
+        // code here
+        priority_queue<pair<int, int>,vector<pair<int,int>>,sort > maxH;
+        vector<int>ans;
+        
+        for(int i = 0; i < n; i++){
+            if(abs(arr[i] - x) == 0){
+                continue;
+            }
+            maxH.push({abs(arr[i] - x), arr[i]});
+            if(maxH.size() > k){
+                maxH.pop();
+            }
+        }
+        
+        while(maxH.empty() == false){
+            ans.push_back(maxH.top().second);
+            maxH.pop();
+        }
+        
+        // sort(ans.begin(), ans.end(), sortbycond);
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
