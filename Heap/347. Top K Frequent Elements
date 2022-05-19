@@ -1,0 +1,30 @@
+#define pi pair<int, int> 
+class Solution {
+    
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> mp;
+        vector<int>ans;
+        
+        for(int i = 0; i < nums.size(); i++){
+            mp[nums[i]]++;
+        }
+        
+        priority_queue<pi, vector<pi>, greater<pi>> minH;
+        
+        for(auto i = mp.begin(); i != mp.end(); i++){
+            minH.push({i->second, i->first});
+            
+            if(minH.size() > k){
+                minH.pop();
+            }
+        }
+        
+        while(minH.empty() == false){
+            ans.push_back(minH.top().second);
+            minH.pop();
+        }
+        
+        return ans;
+    }
+};
