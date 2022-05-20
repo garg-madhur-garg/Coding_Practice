@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+        priority_queue< pair<long long, vector<int>> > maxH;
+        vector<vector<int> > ans;
+        
+        int n = nums1.size();
+        int m = nums2.size();
+        
+        for(int i = 0; i < min(n, k); i++){
+            for(int j = 0; j < min(m, k); j++){
+                
+                if(maxH.size() < k){
+                    maxH.push({nums1[i] + nums2[j], {nums1[i], nums2[j]}});
+                }
+                else if(nums1[i] + nums2[j] < maxH.top().first){
+                    maxH.pop();
+                    maxH.push({nums1[i] + nums2[j], {nums1[i], nums2[j]}});
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        
+        while(maxH.empty() == false){
+            ans.push_back(maxH.top().second);
+            maxH.pop();
+        }
+        
+        return ans;
+    }
+};
