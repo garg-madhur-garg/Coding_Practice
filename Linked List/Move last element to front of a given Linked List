@@ -1,0 +1,42 @@
+/****************************************************************
+Following is the Linked list node structure already written
+
+template <typename T>
+class LinkedListNode
+{
+public:
+    T data;
+    LinkedListNode<T>* next;
+    LinkedListNode(T data)
+    { 
+        this->data = data;
+        next = NULL;
+    }
+};
+*****************************************************************/
+
+
+LinkedListNode<int>* moveToFront(LinkedListNode<int> *head) {
+
+    /*
+     Don't write main().
+     Don't read input, it is passed as function argument.
+     Write your code here.
+    */
+    LinkedListNode<int> * temp = head;
+    if(temp == NULL){
+        return NULL;
+    }
+    else if(temp->next == NULL){
+        return temp;
+    }
+    while(temp != NULL && temp->next!=NULL && temp->next->next!= NULL){
+        temp = temp->next;
+    }
+    
+    LinkedListNode<int>* ele = temp->next;
+    temp->next = NULL;
+    ele->next = head;
+    
+    return ele;
+}
