@@ -1,0 +1,85 @@
+class Solution
+{
+    public:
+    
+    bool allData9(Node* head){
+        while(head != NULL){
+            if(head->data != 9){
+                return false;
+            }
+            head = head->next;
+        }
+        return true;
+    }
+    
+    Node* reverse(Node* head){
+        Node* curr = head;
+        Node* prev = NULL;
+        Node* next = NULL;
+        
+        while(curr != NULL){
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        
+        return prev;
+    }
+    
+    Node* addOne(Node *head) 
+    {
+        // Your Code here
+        // return head of list after adding one
+        head = reverse(head);
+        
+        if(head->data < 9){
+            Node* temp = head;
+            temp->data = temp->data + 1;
+            head = reverse(head);
+            return head;
+        }
+        else if(allData9(head) == true){
+            Node*temp = head;
+            // temp->data = 1;
+            // temp = temp->next;
+            // while(temp != NULL && temp->next != NULL){
+            //     temp->data = 0;
+            //     temp = temp->next;
+            // }
+            // temp->data = 0;
+            // Node* last = new Node(0);
+            // temp->next = last;
+            // last->next = NULL;
+            while(temp != NULL && temp->next != NULL){
+                temp->data = 0;
+                temp = temp->next;
+            }
+            temp->data = 0;
+            Node* last = new Node(1);
+            temp->next = last;
+            last->next = NULL;
+            
+            
+            head = reverse(head);
+            return head;
+        }
+        else{
+            // int curr = 0;
+            Node* temp = head;
+            while(temp != NULL){
+                if(temp->data == 9){
+                    temp->data = 0;
+                    // curr = 1;
+                }
+                else{
+                    temp->data = temp->data + 1;
+                    break;
+                }
+                temp = temp->next;
+            }
+            head = reverse(head);
+            return head;
+        }
+    }
+};
