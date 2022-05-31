@@ -28,3 +28,24 @@ string reverseWord(string str){
     reverse(str.begin(), str.end());
     return str;
 }
+
+
+--------------------REVERSE USING RECURSION---------------------
+
+void rev(string &s, int l, int r){
+    if(l >= r){
+        return ;
+    }
+    
+    swap(s[l], s[r]);
+    rev(s, l + 1, r - 1);
+}
+
+string reverseWord(string str){
+    
+  //Your code here
+  int l = 0;
+  int r = str.length() - 1;
+  rev(str, l, r);
+  return str;
+}
